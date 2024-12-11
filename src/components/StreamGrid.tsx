@@ -10,7 +10,7 @@ interface StreamGridProps {
 
 export const StreamGrid: React.FC<StreamGridProps> = memo(({ streams, onDrag }) => {
   const { removeStream, activeStreams } = useStreamStore();
-  const columns = activeStreams <= 2 ? 2 : activeStreams <= 4 ? 4 : 4;
+  const columns = activeStreams === 1 ? 1 : activeStreams <= 2 ? 2 : activeStreams <= 4 ? 4 : 4;
   
   const handleDrag = useCallback((id: string) => 
     (offset: { x: number; y: number }) => onDrag(id, offset),

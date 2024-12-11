@@ -36,7 +36,6 @@ export const ImageStream: React.FC<ImageStreamProps> = memo(
               alt={`${side} stream placeholder`}
               className="w-full h-full object-cover rounded-lg"
               draggable={false}
-              loading="lazy"
               decoding="async"
               width={300}
               height={225}
