@@ -33,7 +33,6 @@ export const StreamGrid: React.FC<StreamGridProps> = memo(({ streams, onDrag }) 
         {streams.map((stream) => (
           <div key={stream.id} className="relative">
             <ImageStream
-              imageId={stream.imageId}
               offset={stream.offset}
               onDrag={handleDrag(stream.id)}
               side={`stream-${stream.position}`}

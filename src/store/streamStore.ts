@@ -4,14 +4,12 @@ import type { StreamConfig, StreamState } from '../types/stream';
 interface StreamStore extends StreamState {
   addStream: () => void;
   removeStream: (id: string) => void;
-  setStreamImage: (id: string, imageId: string) => void;
   setStreamOffset: (id: string, offset: { x: number; y: number }) => void;
   resetOffsets: () => void;
 }
 
 const createInitialStream = (position: number): StreamConfig => ({
   id: `stream-${Date.now()}-${position}`,
-  imageId: '',
   offset: { x: 0, y: 0 },
   position,
 });
@@ -44,12 +42,6 @@ export const useStreamStore = create<StreamStore>((set) => ({
         activeStreams: state.activeStreams - 1,
       };
     }),
-  setStreamImage: (id, imageId) =>
-    set((state) => ({
-      streams: state.streams.map((stream) =>
-        stream.id === id ? { ...stream, imageId } : stream
-      ),
-    })),
   setStreamOffset: (id, offset) =>
     set((state) => ({
       streams: state.streams.map((stream) =>
