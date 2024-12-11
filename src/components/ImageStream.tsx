@@ -7,7 +7,6 @@ import {
   ArrowLeftRight,
   ArrowUpDown,
 } from "lucide-react";
-import { getPlaceholderImage } from "../utils/placeholders";
 
 interface ImageStreamProps {
   offset: { x: number; y: number };
@@ -27,27 +26,30 @@ export const ImageStream: React.FC<ImageStreamProps> = memo(
       [onDrag]
     );
 
+    // Extract stream number from side prop (e.g., "stream-1" -> 1)
+    const streamNumber = parseInt(side.split('-')[1]) || 0;
+    
+    // Generate background color based on stream number
+    const bgColors = [
+      'bg-blue-500',
+      'bg-green-500', 
+      'bg-purple-500',
+      'bg-orange-500',
+      'bg-pink-500'
+    ];
+    const bgColor = bgColors[streamNumber % bgColors.length];
+
     return (
       <Draggable position={offset} bounds={bounds} onDrag={handleDrag}>
         <div className="relative cursor-move group z-10 hover:z-20">
           <div className="w-[300px] h-[225px] relative transition-opacity duration-200 hover:opacity-50">
-            <img
-              src={getPlaceholderImage(side)}
-              alt={`${side} stream placeholder`}
-              className="w-full h-full object-cover rounded-lg"
-              draggable={false}
-              decoding="async"
-              width={300}
-              height={225}
-            />
-            {
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg">
-                <div className="text-center text-white">
-                  <Image size={48} className="mx-auto mb-2 opacity-60" />
-                  <p className="text-sm">No image selected</p>
-                </div>
-              </div>
-            }
+            <div 
+              className={`w-full h-full ${bgColor} rounded-lg flex items-center justify-center`}
+            >
+              <span className="text-white text-lg font-medium">
+                Stream {streamNumber}
+              </span>
+            </div>
             {showDelete && onDelete && (
               <button
                 onClick={onDelete}
