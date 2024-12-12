@@ -33,7 +33,6 @@ export const useStreamStore = create<StreamStore>((set) => ({
     }),
   removeStream: (id) =>
     set((state) => {
-      if (state.activeStreams <= 2) return state;
       const filteredStreams = state.streams
         .filter((s) => s.id !== id)
         .map((s, idx) => ({ ...s, position: idx }));
