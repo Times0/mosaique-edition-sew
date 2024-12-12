@@ -46,7 +46,7 @@ export const ImageStream: React.FC<ImageStreamProps> = memo(
     return (
       <Draggable position={offset} onDrag={handleDrag}>
         <div className="relative cursor-move group z-10 hover:z-20">
-          <div className="w-[480px] h-[270px] relative transition-opacity duration-200 hover:opacity-50">
+          <div className="w-[300px] h-[169px] relative transition-opacity duration-200 hover:opacity-50">
             <div 
               className={`w-full h-full ${bgColor} rounded-lg flex items-center justify-center`}
             >

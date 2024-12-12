@@ -17,7 +17,7 @@ const createInitialStream = (position: number): StreamConfig => ({
 const initialState: StreamState = {
   streams: [],
   activeStreams: 0,
-  maxStreams: 8,
+  maxStreams: 12,
 };
 
 export const useStreamStore = create<StreamStore>((set) => ({

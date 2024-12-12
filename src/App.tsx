@@ -1,4 +1,3 @@
-import React from 'react';
 import { Download, RotateCcw } from 'lucide-react';
 import { StreamGrid } from './components/StreamGrid';
 import { StreamControls } from './components/StreamControls';
@@ -37,7 +36,7 @@ function App() {
             </button>
           </div>
 
-          <div className="relative overflow-x-auto bg-gray-900 rounded-lg p-4 min-h-[500px]">
+          <div className="relative overflow-x-auto bg-gray-900 rounded-lg p-4 min-h-[600px]">
             <StreamGrid
               streams={streams}
               onDrag={(id, offset) => setStreamOffset(id, offset)}
