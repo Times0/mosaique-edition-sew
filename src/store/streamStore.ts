@@ -15,8 +15,8 @@ const createInitialStream = (position: number): StreamConfig => ({
 });
 
 const initialState: StreamState = {
-  streams: [createInitialStream(0), createInitialStream(1)],
-  activeStreams: 2,
+  streams: [],
+  activeStreams: 0,
   maxStreams: 8,
 };
 

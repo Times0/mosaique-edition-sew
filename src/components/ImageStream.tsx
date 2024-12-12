@@ -6,6 +6,7 @@ import {
   Trash2,
   ArrowLeftRight,
   ArrowUpDown,
+  RotateCcw,
 } from "lucide-react";
 
 interface ImageStreamProps {
@@ -18,7 +19,6 @@ interface ImageStreamProps {
 
 export const ImageStream: React.FC<ImageStreamProps> = memo(
   ({ offset, onDrag, side, onDelete, showDelete }) => {
-    const bounds = { left: -300, right: 300, top: -100, bottom: 100 };
 
     const handleDrag = useMemo(
       () => (_: any, data: { x: number; y: number }) =>
@@ -39,8 +39,12 @@ export const ImageStream: React.FC<ImageStreamProps> = memo(
     ];
     const bgColor = bgColors[streamNumber % bgColors.length];
 
+    const handleReset = () => {
+      onDrag({ x: 0, y: 0 });
+    };
+
     return (
-      <Draggable position={offset} bounds={bounds} onDrag={handleDrag}>
+      <Draggable position={offset} onDrag={handleDrag}>
         <div className="relative cursor-move group z-10 hover:z-20">
           <div className="w-[300px] h-[225px] relative transition-opacity duration-200 hover:opacity-50">
             <div 
@@ -73,6 +77,14 @@ export const ImageStream: React.FC<ImageStreamProps> = memo(
               <ArrowUpDown size={14} />
               <span>{offset.y}px</span>
             </div>
+            <button
+              onClick={handleReset}
+              className="bg-gray-800/75 px-3 py-1 rounded-full text-white text-sm flex items-center gap-2 hover:bg-gray-700/75"
+              aria-label="Reset position"
+            >
+              <RotateCcw size={14} />
+              <span>Reset</span>
+            </button>
           </div>
         </div>
       </Draggable>
